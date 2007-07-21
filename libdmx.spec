@@ -1,8 +1,15 @@
-%define libdmx %mklibname dmx 1
-Name: libdmx
-Summary: The dmx Library
-Version: 1.0.2
-Release: %mkrel 2
+%define name		libdmx
+%define version		1.0.2
+%define release		%mkrel 3
+
+%define libname 	%mklibname dmx 1
+%define develname	%mklibname dmx -d
+%define staticname	%mklibname dmx -d -s
+
+Name: %{name}
+Summary: DMX library (part of X.org)
+Version: %{version}
+Release: %{release}
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
@@ -21,58 +28,60 @@ attached to the server can be queried and modified via this protocol.
 
 #-----------------------------------------------------------
 
-%package -n %{libdmx}
+%package -n %{libname}
 Summary: The dmx Library
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libdmx}
+%description -n %{libname}
 The DMX extension provides support for communication with and control of
 Xdmx server. Attributes of the Xdmx server and of the back-end screens
 attached to the server can be queried and modified via this protocol.
 
 #-----------------------------------------------------------
 
-%package -n %{libdmx}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
-Requires: %{libdmx} = %{version}
+Requires: %{libname} = %{version}
 Requires: x11-proto-devel >= 1.0.0
-Provides: libdmx-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
 Conflicts: libxorg-x11-devel < 7.0
+Obsoletes: %{mklibname dmx 1 -d}
 
-%description -n %{libdmx}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%files -n %{libdmx}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libdmx.so
 %{_libdir}/libdmx.la
 %{_libdir}/pkgconfig/dmx.pc
-%{_mandir}/man3/DMX*.3x.bz2
+%{_mandir}/man3/DMX*.3*
 
 
 #-----------------------------------------------------------
 
-%package -n %{libdmx}-static-devel
+%package -n %{staticname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libdmx}-devel >= %{version}
-Provides: libdmx-static-devel = %{version}-%{release}
+Requires: %{develname} >= %{version}
+Provides: %{name}-static-devel = %{version}-%{release}
 Conflicts: libxorg-x11-static-devel < 7.0
+Obsoletes: %{mklibname dmx 1 -d -s}
 
-%description -n %{libdmx}-static-devel
+%description -n %{staticname}
 Static development files for %{name}
 
-%files -n %{libdmx}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/libdmx.a
 
 #-----------------------------------------------------------
 
 %prep
-%setup -q -n libdmx-%{version}
+%setup -q
 
 %build
 %configure2_5x	--x-includes=%{_includedir}\
@@ -90,9 +99,7 @@ rm -rf %{buildroot}
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -n %{libdmx}
+%files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libdmx.so.1
 %{_libdir}/libdmx.so.1.0.0
-
-
