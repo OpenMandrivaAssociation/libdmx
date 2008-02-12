@@ -1,21 +1,25 @@
+%define name		libdmx
+%define version		1.0.2
+%define release		%mkrel 4
+
 %define libname 	%mklibname dmx 1
 %define develname	%mklibname dmx -d
 %define staticname	%mklibname dmx -d -s
 
-Name: libdmx
+Name: %{name}
 Summary: DMX library (part of X.org)
-Version: 1.0.2
-Release: %mkrel 4
+Version: %{version}
+Release: %{release}
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
 Source0: http://xorg.freedesktop.org/releases/individual/lib/libdmx-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-root
 
-BuildRequires: x11-util-macros	>= 1.1.5
-BuildRequires: libx11-devel	>= 1.1.3
-BuildRequires: x11-proto-devel	>= 7.3
-BuildRequires: libxext-devel	>= 1.0.3
+BuildRequires: libx11-devel >= 1.0.0
+BuildRequires: libxext-devel >= 1.0.0
+BuildRequires: x11-proto-devel >= 1.0.0
+BuildRequires: x11-util-macros >= 1.0.1
 
 %description
 The DMX extension provides support for communication with and control of
