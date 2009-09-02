@@ -1,6 +1,6 @@
 %define name		libdmx
 %define version		1.0.2
-%define release		%mkrel 5
+%define release		%mkrel 6
 
 %define libname 	%mklibname dmx 1
 %define develname	%mklibname dmx -d
