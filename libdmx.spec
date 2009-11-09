@@ -1,6 +1,6 @@
 %define name		libdmx
-%define version		1.0.2
-%define release		%mkrel 6
+%define version		1.1.0
+%define release		%mkrel 1
 
 %define libname 	%mklibname dmx 1
 %define develname	%mklibname dmx -d
@@ -18,8 +18,9 @@ BuildRoot: %{_tmppath}/%{name}-root
 
 BuildRequires: libx11-devel >= 1.0.0
 BuildRequires: libxext-devel >= 1.0.0
-BuildRequires: x11-proto-devel >= 1.0.0
+BuildRequires: x11-proto-devel >= 7.5
 BuildRequires: x11-util-macros >= 1.0.1
+BuildRequires: libxext-devel >= 1.1.1
 
 %description
 The DMX extension provides support for communication with and control of
@@ -45,9 +46,12 @@ attached to the server can be queried and modified via this protocol.
 Summary: Development files for %{name}
 Group: Development/X11
 Requires: %{libname} = %{version}
-Requires: x11-proto-devel >= 1.0.0
+Requires: x11-proto-devel >= 7.5
 Provides: %{name}-devel = %{version}-%{release}
+
 Conflicts: libxorg-x11-devel < 7.0
+Conflicts: x11-proto-devel < 7.5
+
 Obsoletes: %{mklibname dmx 1 -d}
 
 %description -n %{develname}
@@ -58,6 +62,7 @@ Development files for %{name}
 %{_libdir}/libdmx.so
 %{_libdir}/libdmx.la
 %{_libdir}/pkgconfig/dmx.pc
+%{_includedir}/X11/extensions/*.h
 %{_mandir}/man3/DMX*.3*
 
 
