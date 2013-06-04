@@ -1,11 +1,11 @@
-%define major	1
-%define libname	%mklibname dmx %{major}
-%define devname	%mklibname dmx -d
+%define major 1
+%define libname %mklibname dmx %{major}
+%define devname %mklibname dmx -d
 
 Name:		libdmx
 Summary:	DMX library (part of X.org)
-Version:	1.1.2
-Release:	2
+Version:	1.1.3
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -39,7 +39,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{_lib}dmx-static-devel < 1.1.2
 
 %description -n %{devname}
-Development files for %{name}
+Development files for %{name}.
 
 %prep
 %setup -q
