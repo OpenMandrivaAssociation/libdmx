@@ -5,7 +5,7 @@
 Name:		libdmx
 Summary:	DMX library (part of X.org)
 Version:	1.1.3
-Release:	8
+Release:	9
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
