@@ -4,8 +4,8 @@
 
 Name:		libdmx
 Summary:	DMX library (part of X.org)
-Version:	1.1.3
-Release:	11
+Version:	1.1.4
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -45,7 +45,7 @@ Development files for %{name}.
 %setup -q
 
 %build
-%configure2_5x	\
+%configure \
 	--disable-static \
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
@@ -63,4 +63,3 @@ Development files for %{name}.
 %{_libdir}/pkgconfig/dmx.pc
 %{_includedir}/X11/extensions/*.h
 %{_mandir}/man3/DMX*.3*
-
