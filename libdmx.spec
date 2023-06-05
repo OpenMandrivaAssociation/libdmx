@@ -4,12 +4,12 @@
 
 Name:		libdmx
 Summary:	DMX library (part of X.org)
-Version:	1.1.4
-Release:	4
+Version:	1.1.5
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libdmx-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libdmx-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
@@ -42,7 +42,7 @@ Obsoletes:	%{_lib}dmx-static-devel < 1.1.2
 Development files for %{name}.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %configure \
@@ -50,10 +50,10 @@ Development files for %{name}.
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libdmx.so.%{major}*
@@ -62,4 +62,4 @@ Development files for %{name}.
 %{_libdir}/libdmx.so
 %{_libdir}/pkgconfig/dmx.pc
 %{_includedir}/X11/extensions/*.h
-%{_mandir}/man3/DMX*.3*
+%doc %{_mandir}/man3/DMX*.3*
